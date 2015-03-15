@@ -40,3 +40,19 @@ rules.forEach(function(rule_styles){
     effective_styles[key] = rule_styles[key];
   });
 });
+
+
+var final = selector + "{" + "\n";
+Object.keys(effective_styles).forEach(function(key){
+  final += "\t" + key + ": " + effective_styles[key] + ";" + "\n";
+});
+final += "}";
+
+console.log(final);
+
+/*
+  rules               -   an array of all the rules for this selector, in the order from least-to-most significate (most is the last one, overwriting all..).
+  effective_styles    -   object of all the final styles for the selector (after all of the CSS-style overwrites).
+  
+  final               -   taking 'selector' and 'effective_styles' and making it a CSS style-rule format.
+*/
