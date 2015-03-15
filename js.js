@@ -1,9 +1,9 @@
-var selector = '.yt-uix-button:hover';
+var selector = '.yt-uix-button';
 
 /* finding rules that (partialy) match */
 var rules = Array.prototype.filter.call(document.styleSheets[0].cssRules, function(item){
   return "string" === typeof item.selectorText &&
-         -1 !== item.selectorText.indexOf(selector);
+         -1 !== item.selectorText.replace(/\,/g,"||,").replace(/\s+/g,"||").indexOf(selector + "||");
 });
 
 /* extracting order is from least-to-most-effective: later rules may overwrite the first ones (just like CSS stylesheet) */
